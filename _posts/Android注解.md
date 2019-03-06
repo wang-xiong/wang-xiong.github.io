@@ -1,14 +1,14 @@
 ---
 layout: post
-title: "注解"
-subtitle: 'Using Annotation in Android'
-author: "WangXiong"
+title: "Android注解学习"
+subtitle: 'Using annotation in Android'
+date:		2015-01-29 12:00:00
+author: "Wangxiong"
 header-style: text
 tags:
   - Android
+  - Annotation
 ---
-
-
 # 一、注解
 
 元注解：元注解指注解的注解，包括@Retention @Target @Document @Inherited四种
