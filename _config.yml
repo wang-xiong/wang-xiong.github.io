@@ -3,7 +3,7 @@ title: WangXiong Blog
 SEOTitle: 王雄的博客 | WangXiong Blog
 header-img: img/home-bg.jpg
 email: 1072140482@qq.com
-description: "A android developer, a writer, a thinker" | Hi 这里是 @王雄 的个人博客，与你一起发现更大的世界。"
+description: "A android developer, a writer, a thinker | Hi 这里是 @王雄 的个人博客，与你一起发现更大的世界。"
 keyword: "WX, WangXiong Blog, 王雄的博客, wangxiong, Android, Java @WangXiong, 博客, 个人网站, 互联网"
 url: "https://wang-xiong.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
