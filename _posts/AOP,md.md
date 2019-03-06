@@ -1,3 +1,14 @@
+---
+layout: post
+title: "面向切面编程"
+subtitle: '编程思想'
+date:       201-03-06
+author: "Wangxiong"
+header-style: text
+tags:
+  - Java
+  - AOP OOP
+---
 AOP
 
 AOP是Aspect Oriented Programming，译为面向切面编程。
