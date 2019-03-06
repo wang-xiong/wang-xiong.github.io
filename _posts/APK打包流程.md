@@ -1,0 +1,15 @@
+## APK打包流程
+
+1. 通过aapt打包res资源文件，生成R.java、resources.arsc和res文件。
+2. 处理.aidl文件，生成对应的java接口文件
+3. 通过Java Compiler编译R.java、Java接口文件、Java源文件生成.class文件。
+4. 通过dex命令，将.class文件和第三方库中的.class文件处理生成classes.dex文件。
+5. 通过apkbuilder工具，将aapt生成的resources.arsc和res文件、assets文件和classes.dex一起打包生成apk。
+6. 通过Jarsigner工具，对上面的apk进行debug或者release签名。
+7. 通过zipalign工具，将签名后的apk进行对齐处理。
+
+## 多渠道打包及签名
+
+- 多渠道打包，gradle配置
+- 签名：数字证书
+

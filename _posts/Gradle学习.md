@@ -1,0 +1,378 @@
+# Gradle
+
+* 1.Gradle使用的语言是Grovvy语言，我们使用Gradle构建Andoid项目。
+
+* 2.Gradle涉及比较多的概念：Project、Task等
+
+## 一、Groovy介绍
+
+Groovy是一种基于Java平台的面向对象语言，常见的Groovy语法
+
+- def关键字
+
+  在Groovy用来定义标识符的关键字
+
+  ```groovy
+  def name = 'wx'
+  ```
+
+- 单引号和双引号：
+
+  单引号字符串被解释成`java.lang.string`，不支持内插值。
+
+  当双引号字符串中没有插值表达式时，字符串的类型为`java.lang.String`，当双引号字符串中包含插值表达式时，字符串类型为`groovy.lang.GString`。
+
+  ```groovy
+  def name = 'wx' 
+  def greeting = "Hello ${name}"
+  ```
+
+- Groovy会为每个类的字段自动生成get和set方法
+
+- Groovy每行代码不必用";"
+
+- Closures（闭包）
+
+  Groovy闭包是一种可执行代码块的方法，闭包也是对象，可以向方法一样传递参数，它可以访问到其外部的变量或方法。
+
+  ```groovy
+  (1)无参数
+  def a={
+      println "Hello Word！"
+  }
+  a.call()
+  (2)有参数
+  def a2={param->
+      println "${param}"
+  }
+  a2("wx")
+  (3)只有一个参数时可以用it来访问该参数
+  def a3={
+      println "Hello ${it}"
+  }
+  a3("wx")
+  ```
+
+## 二、Project
+
+### 1.Project简介
+
+在Gradle中，每个待编译的工程都叫一个Project， Gradle为每个build.gradle创建了一个Project领域对象。Gradle支持多个Project，在根Project的settings.gradle配置文件进行配置，Gradle默认已经为Project定义了很多的Property，例如：
+
+```java
+project：Project本身
+name：Project的名字
+path：Project的绝对路径
+description：Project的描述信息
+buildDir：Project构建结果存放目录
+version：Project的版本号
+```
+
+### 2.自定义Property
+
+```groovy
+ext.prperty1 = 'zhangsan'
+ext {
+   property2 = 'zhangsan
+    
+}
+```
+
+### 3.Gradle的依赖
+
+1.我们在项目中总会存在一个项目依赖另一个项目或者第三方库等，怎么获取这些依赖。
+
+* 需要配置Gradle的repositories，就会去这里下载
+* 依赖的形式在项目的classpatch，即dependencies下的classpatch
+
+2.依赖组概念（Configuration）
+
+Gradle会对依赖进行分组，比如编译时使用这组的依赖，测试时使用另一组的依赖。每一组的依赖称为一个Configuration    
+
+* 常用的Configuration：implementation testCompile （java plugin）
+
+3.自定义Configuration
+
+```groovy
+configurations {
+	myDependency
+}
+//通过dependencies()方法向myDependency中加入实际的依赖项：
+dependencies {
+    myDependency 'com.android.support:appcompat-v7:28.0.0'
+}
+task testMyDependecy() {
+    group 'wx'
+    println configurations.myDependency.asPath
+}
+
+```
+
+## 三、Task
+
+### 1.Task简介
+
+一个Task代表一个构建工作的原子操作，每个Project都包含了一系列的Task。比如Java源码编译Task、资源编译Task，Jni编译Task，lint坚持Task，打包生成Apk的Task，签名Task。Gradle执行Task时分为两个阶段，首先是配置阶段，然后是实际执行阶段。配置阶段会扫描整个build.gradle文件，配置Project和Task。[Task的Api](<https://docs.gradle.org/current/dsl/org.gradle.api.Task.html>)。
+
+执行Task的方法：
+
+* 在Gradle图形化界面执行。
+
+* 在Terminal窗口执行：./gradlew helloTask
+
+  （1）./gradlew tasks 查看当前Project所有的task
+
+  （2）./gradlew properties 查看当前Project的properties
+
+```java
+Task {
+    String TASK_NAME = "name";
+    String TASK_DESCRIPTION = "description";
+    String TASK_GROUP = "group";
+    String TASK_TYPE = "type";
+    String TASK_DEPENDS_ON = "dependsOn";
+    String TASK_OVERWRITE = "overwrite";
+    String TASK_ACTION = "action";
+}
+//常用的可配置参数:name,group,description,type,dependsOn
+name：task的名称
+group：task所在的分组，group相同会被分在一组，默认是other
+type: 新建的Task对象从那个基类派生出来的
+dependsOn：task依赖与哪一个task
+```
+
+### 2.自定义Task
+
+#### 1.创建Task
+
+```groovy
+(1)
+task helloTask() {
+    println("hello my Task")
+}
+(2)
+this.tasks.create(name: 'helloTask1')
+helloTask1.group = 'wx'
+(3)
+task helloTask(group: "wx", description: 'task test') {
+    println("hello my Task")
+}
+(4)
+task helloTask() {
+    setGroup('wx')
+    setDescription('task test')
+    println("hello my Task")
+}
+(5)
+task copyFileTask(type: Copy) {
+    setGroup('wx')
+    from "src/main/AndroidManifest.xml"
+    into 'src/main/test'
+    rename { String fileName ->
+        fileName = "AndroidManifestTest.xml"
+    }
+    println("copyFileTask final")
+}
+```
+
+#### 2.Task常用方法
+
+```groovy
+helloTask.doFirst {
+    println("hello my Task doFirst")
+}
+helloTask.doLast {
+    println("hello my Task doLast")
+}
+helloTask << {
+    println("hello my Task <<")
+}
+```
+
+#### 3.Task的执行顺序
+
+```grovvy
+task taskX(){
+    group 'wx'
+    doLast{
+        println("taskX")
+    }
+}
+task taskY(){
+    group 'wx'
+    doLast{
+        println("taskY")
+    }
+}
+(1)
+task taskZ(dependsOn:[taskX,taskY]){
+    group 'wx'
+    doLast{
+        println("taskZ")
+    }
+}
+(2)
+task taskZ(){
+    group 'wx'
+    doLast{
+        println("taskZ")
+    }
+}
+taskZ.dependsOn(taskX,taskY)   //这中taskX,taskY的执行顺序是随机的
+(3)afterEvaluate使用
+afterEvaluate在配置阶段执行完,所有的task都会被创建成功了.
+例：统计task执行阶段的时长
+def startBuildTime, endBuildTime
+this.afterEvaluate {
+    //保证要找的task都已经配置完毕
+    Project project ->
+        //找到最开始执行的task
+        def preBuildTask = project.tasks.getByPath('preBuild')
+        preBuildTask.doFirst {
+            startBuildTime = System.currentTimeMillis()
+        }
+        //找到最后执行的task
+        def buildTask = project.tasks.getByPath('build')
+        buildTask.doLast {
+            endBuildTime = System.currentTimeMillis()
+            println("build的时间差:::${endBuildTime - startBuildTime}")
+        }
+}
+```
+
+### 2.Task增量构建（UP-TO-DATE）
+
+Gradle引入了增量式构建的概念：为每个Task定义输入（inputs）和输入（outputs），比如使用java插件编译源码时，输入为java源文件，输出为class文件，如果在执行一个Task时，如果它的输入和输出与前一次执行时没有发生变化，那么Gradle便会认为该Task是最新的（UP-TO-DATE）。
+
+## 四、自定义插件
+
+### 1.直接在build.gradle中定义
+
+```
+apply plugin: MyPlugin
+class MyPlugin implements Plugin<Project> {
+
+    @Override
+    void apply(Project target) {
+        target.extensions.create("dateAndTime", DateAddTimePluginExtension)
+
+        target.task('showTime') << {
+            println("current time is:" + new Date().format(target.dateAndTime.timeFormat))
+        }
+        target.showTime.group = 'wx'
+
+        target.tasks.create('showData') << {
+            println("current date is:" + new Date().format(target.dateAndTime.dateFormat))
+        }
+        target.showData.group = 'wx'
+    }
+}
+
+class DateAddTimePluginExtension {
+    String timeFormat = "MM/dd/yyyyHH:mm:ss.SSS"
+    String dateFormat = "yyyy-MM-dd"
+}
+dateAndTime {
+    timeFormat = 'HH:mm:ss.SSS'
+    dateFormat = 'MM/dd/yyyy'
+}
+```
+
+### 2.新建单独的插件工程
+
+* 新建工程（plugin_test）
+* 工程目录新建src/main目录和build.gradle文件
+* main目录下新建groovy目录和resources目录
+* groovy目录下新建包名目录（com.wx.plugin.test）
+* resources下新建META-INF/gradle-plugins目录
+* groovy/包名目录新建.groovy文件，如MyPlugin.groovy
+* resources/META-INF/gradle-plugins目录新建.properties文件，文件名就是最终的插件名，如：test-plugin.properties
+
+最终目录结构如下:
+
+![](/Users/wangxiong/Downloads/plugin目录.png)
+
+### 3.直接新建buildSrc
+
+## 五Transform
+
+[Gradle Transform](http://tools.android.com/tech-docs/new-build-system/transform-api)是Android官方提供给开发者在项目构建阶段即由class到dex转换期间修改class文件的一套api。目前比较经典的应用是字节码插桩、代码注入技术。
+
+利用ASM框架生成相对应的代码主要是写入或者插入class的字节码。
+
+1. TransformInput：Transform就是对输入的class文件转变成目标字节码文件，TransformInput就是这些输入文件的抽象。目前它包括两部分：DirectoryInput集合与JarInput集合。
+
+   * DirectoryInput：它代表着以源码方式参与项目编译的所有目录结构及其目录下的源码文件，可以借助于它来修改输出文件的目录结构、以及目标字节码文件。
+   * JarInput：它代表着以jar包方式参与项目编译的所有本地jar包或远程jar包，可以借助于它来动态添加jar包。
+
+2. TransformOutputProvider：它代表的是Transform的输出。
+
+3. 自定义Transform主要实现如下方法： 
+
+   ```groovy
+   class MyTransform extends Transform {
+       @Override
+       void transform(Context context
+                      , Collection<TransformInput> inputs
+                      , Collection<TransformInput> referencedInputs
+                      , TransformOutputProvider outputProvider
+                      , boolean isIncremental) throws IOException, TransformException
+       , InterruptedException {
+           
+       }
+   
+       @Override
+       String getName() {
+           return "MyTransform"
+       }
+       
+       @Override
+       Set<QualifiedContent.ContentType> getInputTypes() {
+           return TransformManager.CONTENT_CLASS
+       }
+   
+       @Override
+       Set<? super QualifiedContent.Scope> getScopes() { 
+           return TransformManager.SCOPE_FULL_PROJECT
+       }
+       @Override
+       boolean isIncremental() {
+           return false
+       }
+   }
+   ```
+
+* getName:代表Transform的Task名称
+* getInputTypes：用于指明Transform的输入类型，可以作为输入过滤的手段
+
+```groovy
+public static final Set<ContentType> CONTENT_CLASS = ImmutableSet.of(CLASSES);
+public static final Set<ContentType> CONTENT_JARS = ImmutableSet.of(CLASSES, RESOURCES);
+public static final Set<ContentType> CONTENT_RESOURCES = ImmutableSet.of(RESOURCES);
+public static final Set<ContentType> CONTENT_NATIVE_LIBS =
+        ImmutableSet.of(NATIVE_LIBS);
+public static final Set<ContentType> CONTENT_DEX = ImmutableSet.of(ExtendedContentType.DEX);
+public static final Set<ContentType> DATA_BINDING_ARTIFACT =
+        ImmutableSet.of(ExtendedContentType.DATA_BINDING);
+public static final Set<ContentType> DATA_BINDING_BASE_CLASS_LOG_ARTIFACT =
+        ImmutableSet.of(ExtendedContentType.DATA_BINDING_BASE_CLASS_LOG);
+```
+
+- getScopes：用于指明Transform的作用域，在TransformManager定义了如下的三种种类型：
+
+  ```groovy
+  public static final Set<Scope> SCOPE_FULL_PROJECT =
+          Sets.immutableEnumSet(
+                  Scope.PROJECT,
+                  Scope.SUB_PROJECTS,
+                  Scope.EXTERNAL_LIBRARIES);
+  public static final Set<ScopeType> SCOPE_FULL_WITH_IR_FOR_DEXING =
+          new ImmutableSet.Builder<ScopeType>()
+                  .addAll(SCOPE_FULL_PROJECT)
+                  .add(InternalScope.MAIN_SPLIT)
+                  .build();
+  public static final Set<ScopeType> SCOPE_FULL_LIBRARY_WITH_LOCAL_JARS =
+          ImmutableSet.of(Scope.PROJECT, InternalScope.LOCAL_DEPS);
+  ```
+
+- isIncremental：用于指明是否是增量构建。

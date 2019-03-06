@@ -1,0 +1,152 @@
+上传Maven库
+
+# Maven是什么？
+
+Maven是一个项目管理工具，我们主要用于存放一些类库、插件等方便共享。
+
+# Maven库的版本
+
+在maven的约定中，依赖的版本分为两类SNAPSHOT版本和release版本。还有一些beta、rc之类版本，但这些都是软件工程角度的测试版本，对Maven而已都是release版本。release版本是正式稳定的版本，SNAPSHOT版本是快照版本，同一个SNAPSHOT版本可以在仓库中存在多份，但HEAD会指向最新的快照，而且每次同步代码都会去下载最新的快照，release版本如果本地存在了则不会去下载。
+
+发布SNAPSHOT版本只需要在pom文件中的版本号后加-SNAPSHOT，如下所示，再deploy的时候就好自动上传到SNAPSHOT仓库
+
+<version>1.0.1-SNAPSHOT</version>
+
+1.什么是.pom文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example.wx.testsdk</groupId>
+  <artifactId>testsdk</artifactId>
+  <version>1.0.0</version>
+  <packaging>aar</packaging>
+  <dependencies>
+    <dependency>
+      <groupId>com.example.commonUI</groupId>
+      <artifactId>commonUI</artifactId>
+      <version>1.0.0</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>
+```
+
+# 上传
+
+module生成aar上传
+
+```groovy
+apply plugin: 'maven'
+
+//返回仓库账号
+def getRepositoryUsername() {
+    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+}
+//返回仓库密码
+def getRepositoryPassword() {
+    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+}
+
+//返回Release仓库地址
+def getReleaseRepository() {
+    String localRepository = "file://" + project.rootDir.absolutePath + "/releaseRepository"
+    return hasProperty("RELEASE_REPOSITORY_URL") ? RELEASE_REPOSITORY_URL : localRepository
+}
+
+//返回SnapShot仓库地址
+def getSnapShotRepository() {
+    String localRepository = "file://" + project.rootDir.absolutePath + "/snapshotRepository"
+    return hasProperty("SNAPSHOT_REPOSITORY_URL") ? SNAPSHOT_REPOSITORY_URL : localRepository
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                pom.groupId = GROUP
+                pom.artifactId = POM_ARTIFACT_ID
+                pom.version = VERSION_NAME
+                repository(url: getReleaseRepository()) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
+                snapshotRepository(url: getSnapShotRepository()) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
+            }
+        }
+    }
+    task androidJavadocs(type: Javadoc) {
+        source = android.sourceSets.main.java.srcDirs
+        classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    }
+    task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+        classifier = 'javadoc'
+        from androidJavadocs.destinationDir
+    }
+    task androidSourcesJar(type: Jar) {
+        classifier = 'sources'
+        from android.sourceSets.main.java.sourceFiles
+    }
+    artifacts {
+        archives androidSourcesJar
+    }
+}
+```
+
+直接上传aar
+
+```groovy
+apply plugin: 'maven'
+
+//返回仓库账号
+def getRepositoryUsername() {
+    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : ""
+}
+//返回仓库密码
+def getRepositoryPassword() {
+    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : ""
+}
+
+//返回Release仓库地址
+def getReleaseRepository() {
+    String localRepository = "file://" + project.rootDir.absolutePath + "/snapshotRepository"
+    return hasProperty("RELEASE_REPOSITORY_URL") ? RELEASE_REPOSITORY_URL : localRepository
+}
+
+//返回SnapShot仓库地址
+def getSnapShotRepository() {
+    String localRepository = "file://" + project.rootDir.absolutePath + "/releaseRepository"
+    return hasProperty("SNAPSHOT_REPOSITORY_URL") ? SNAPSHOT_REPOSITORY_URL : localRepository
+}
+
+afterEvaluate { project ->
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                snapshotRepository(url: getSnapShotRepository()) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
+                repository(url: getReleaseRepository()) {
+                    authentication(userName: getRepositoryUsername(), password: getRepositoryPassword())
+                }
+                pom.project {
+                    version VERSION_NAME
+                    artifactId POM_ARTIFACT_ID
+                    groupId GROUP
+                    packaging SDK_TYPE
+                }
+            }
+        }
+    }
+
+    artifacts {
+        archives(file('libs/wx_test.aar')) {
+            classifier = 'wx_test'
+        }
+    }
+
+}
+```
