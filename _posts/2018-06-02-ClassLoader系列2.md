@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "【ClassLoader系列】一、Android中的ClassLoader"
+title: "【ClassLoader系列】二、Android中的ClassLoader"
 subtitle: 'ClassLoader学习，总结'
 date:       2018-06-02
 author: "Wangxiong"
@@ -10,7 +10,7 @@ tags:
   - Android
   - ClassLoader
 ---
-# Android中的ClassLoader
+# 二、Android中的ClassLoader
 
 Android中的ClassLoader和Java中的ClassLoader是不同的。Java中的ClassLoader可以加载jar文件和class文件（本质是加载class文件），但是Android中无论是DVM还ART它们加载的不是class文件，而是dex文件。
 
