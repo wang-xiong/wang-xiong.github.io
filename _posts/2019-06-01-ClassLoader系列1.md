@@ -1,3 +1,15 @@
+---
+layout: post
+title: "【ClassLoader系列】一、Java中的ClassLoader"
+subtitle: 'ClassLoader学习，总结'
+date:       2018-06-01
+author: "Wangxiong"
+header-style: text
+tags:
+  - Java
+  - ClassLoader
+---
+
 # Java中的ClassLoader
 
 类加载器的功能就是查找Class文件到Java虚拟机中。
