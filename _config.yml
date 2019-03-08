@@ -16,8 +16,8 @@ RSS: false
 # weibo_username:     qiubaiying
 #zhihu_username:     qiubaiying
 github_username:    wang-xiong
-#facebook_username:  baiying.qiu.7
 jianshu_username:   4088b29806be
+#facebook_username:  baiying.qiu.7
 #twitter_username:   qiubaiying
 
 
@@ -79,7 +79,7 @@ ga_domain: wangxiong.top
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
 sidebar-about-description: "For the next quantum leap<br>时间就是故事，用键盘留下痕迹"
-sidebar-avatar: /img/avatar-hux-ny.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-avatar: /img/home/me_wx.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
