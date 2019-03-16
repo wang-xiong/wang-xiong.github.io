@@ -53,7 +53,7 @@ Android系统使用PathClassLoader来加载系统和应用程序的类，PathCla
 
 和Java中的ClassLoader一样，虽然系统所提供的类加载器主要有3种类型，但是系统提供的ClassLoader相关类却不只3个。ClassLoader的继承关系如下图所示。
 
-![image-20190308131412575](/Users/wangxiong/Library/Application Support/typora-user-images/image-20190308131412575.png)
+![classloader-2.png](https://upload-images.jianshu.io/upload_images/10547376-5b380e4ba832f060.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 - ClassLoader：一个抽象类，定义了ClassLoader的主要功能。BootClassLoader是它的内部类。
 - SecureClassLoader：和JDK8中的SecureClassLoader代码是一样的，继承了ClassLoader，拓展了ClassLoader类加入了权限方面的功能，加强了ClassLoader的安全性。

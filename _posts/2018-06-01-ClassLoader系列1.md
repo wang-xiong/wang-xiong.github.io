@@ -50,7 +50,7 @@ ExtClassLoader和AppClassLoader都继承自URLClassLoader，它们都是Launcher
 
 类加载器查找Class采用的是双亲委托机制，即首先判断该Class是否已经加载，如果没有则委托给父类加载器进行查找，依次进行递归直到最顶层的Bootstrap ClasssLoader，如果Bootstrap ClassLoader找到该Class，就直接返回，如果没有，则继续依次向下查找，最后交给自身去查找。如下图所示
 
-![image-20190308102829867](/Users/wangxiong/Library/Application Support/typora-user-images/image-20190308102829867.png)
+![classloader-1.png](https://upload-images.jianshu.io/upload_images/10547376-81dff278cd367af2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 **双亲委托机制好处：**
 
