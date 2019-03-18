@@ -14,7 +14,7 @@ tags:
 
 Android中的ClassLoader和Java中的ClassLoader是不同的。Java中的ClassLoader可以加载jar文件和class文件（本质是加载class文件），但是Android中无论是DVM还ART它们加载的不是class文件，而是dex文件。
 
-## 1.Android中的ClassLoade的类型
+## 1.Android中的ClassLoader的类型
 
 Android中的ClassLoader和Java中的ClassLoader类似，分为两种：系统ClassLoader和自定义ClassLoader。系统的ClassLoader主要三种分别是BootClassLoader、PathClassLoader和DexClassLoader。
 
