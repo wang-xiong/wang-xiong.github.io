@@ -9,7 +9,7 @@ tags:
   - Android
   - IPC
 ---
-Android系统IPC进程间的通信方式有多种，使用Bundle、使用共享文件、AIDL、Messenger、ContentProvider、Socket
+Android系统IPC进程间的通信方式有多种，使用Bundle、使用共享文件、AIDL、Messenger、ContentProvider、Socket。
 
 ## 1. 使用Bundle
 
@@ -50,3 +50,13 @@ ArrayMap<IBinder, Callback> mCallbacks  = new ArrayMap<IBinder, Callback>();
 ### 3.5 Binder连接池
 
 服务端一对多，使用Bindler连接池管理所有的AIDL，服务端只创建一个Service，每个客户端请求连接时，带上自己的唯一标识，服务端根据标识返回对应的Binder给客户端。
+
+## 4. 使用Messager
+
+可以使用Messager来代替AIDL，通过Message对象传递需要传递的对象，利用Messager在不同进程间进行通信，Messager是一种轻量级的IPC方案，底层依然是AIDL，由于Messager一次只能处理一个请求，因此不需要考虑线程同步问题。
+
+**使用：**
+
+1. 服务端通过Handler构建Messager对象，在Service的onBind中返回Messager中的Binder，Handler用于处理接收客户端发过来的Message对象。
+2. 客户端绑定Service，在onServiceConnected中利用IBinder构建Messager对象。封装传递的参数到Message中，调用Messager的send方法发送Message。
+3. 双向通信，需要客户端通过Handler构建一个Messager对象，然后再发送的Message中的replyTo携带客户端的Messager对象。服务端在收到客户端的消息后，从Message中的replyTo取出客户端的Messager对象，利用Messager对象发送消息。

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "「APP系列」四、Android Native Crash"
+title: "「APP性能系列」Android Native Crash"
 subtitle: 'Android应用 APP性能'
-date:       2018-07-04
+date:       2018-07-12
 author: "Wangxiong"
 header-style: text
 tags:
