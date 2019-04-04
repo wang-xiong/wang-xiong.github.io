@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "「Apk系列」二、Apk打包流程"
+title: "Apk打包流程"
 subtitle: 'Android应用 APP学习'
-date:       2018-07-02
+date:       2018-07-01
 author: "Wangxiong"
 header-style: text
 tags:

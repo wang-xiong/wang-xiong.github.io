@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "App相关知识碎片积累"
+title: "Apk打包编译配置"
 subtitle: 'Android应用 App性能 Apk'
-date:       2018-07-05
+date:       2018-07-02
 author: "Wangxiong"
 header-style: text
 tags:

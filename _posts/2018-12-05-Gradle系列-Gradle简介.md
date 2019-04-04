@@ -2,20 +2,18 @@
 layout: post
 title: "Gradle系列"
 subtitle: 'Android'
-date:       2019-02-01
+date:       2018-12-05
 author: "Wangxiong"
 header-style: text
 tags:
   - Android
   - Grandle
 ---
-# Gradle
+## 1. Gradle简介
 
-* 1.Gradle使用的语言是Grovvy语言，我们使用Gradle构建Andoid项目。
+Gradle使用的语言是Grovvy语言，我们使用Gradle构建Andoid项目。Gradle涉及比较多的概念：Project、Task等
 
-* 2.Gradle涉及比较多的概念：Project、Task等
-
-## 一、Groovy介绍
+## 2. Groovy介绍
 
 Groovy是一种基于Java平台的面向对象语言，常见的Groovy语法
 
@@ -64,9 +62,9 @@ Groovy是一种基于Java平台的面向对象语言，常见的Groovy语法
   a3("wx")
   ```
 
-## 二、Project
+## 3. Project
 
-### 1.Project简介
+### 3.1 Project简介
 
 在Gradle中，每个待编译的工程都叫一个Project， Gradle为每个build.gradle创建了一个Project领域对象。Gradle支持多个Project，在根Project的settings.gradle配置文件进行配置，Gradle默认已经为Project定义了很多的Property，例如：
 
@@ -79,7 +77,7 @@ buildDir：Project构建结果存放目录
 version：Project的版本号
 ```
 
-### 2.自定义Property
+### 3.2 自定义Property
 
 ```groovy
 ext.prperty1 = 'zhangsan'
@@ -89,7 +87,7 @@ ext {
 }
 ```
 
-### 3.Gradle的依赖
+## 4. Gradle的依赖
 
 1.我们在项目中总会存在一个项目依赖另一个项目或者第三方库等，怎么获取这些依赖。
 
@@ -119,9 +117,9 @@ task testMyDependecy() {
 
 ```
 
-## 三、Task
+## 5. Task
 
-### 1.Task简介
+### 5.1 Task简介
 
 一个Task代表一个构建工作的原子操作，每个Project都包含了一系列的Task。比如Java源码编译Task、资源编译Task，Jni编译Task，lint坚持Task，打包生成Apk的Task，签名Task。Gradle执行Task时分为两个阶段，首先是配置阶段，然后是实际执行阶段。配置阶段会扫描整个build.gradle文件，配置Project和Task。[Task的Api](<https://docs.gradle.org/current/dsl/org.gradle.api.Task.html>)。
 
@@ -152,9 +150,9 @@ type: 新建的Task对象从那个基类派生出来的
 dependsOn：task依赖与哪一个task
 ```
 
-### 2.自定义Task
+### 5.2 自定义Task
 
-#### 1.创建Task
+#### 5.2.1 创建Task
 
 ```groovy
 (1)
@@ -186,7 +184,7 @@ task copyFileTask(type: Copy) {
 }
 ```
 
-#### 2.Task常用方法
+#### 5.2.2 Task常用方法
 
 ```groovy
 helloTask.doFirst {
@@ -200,7 +198,7 @@ helloTask << {
 }
 ```
 
-#### 3.Task的执行顺序
+#### 5.2.3 Task的执行顺序
 
 ```grovvy
 task taskX(){
@@ -251,13 +249,13 @@ this.afterEvaluate {
 }
 ```
 
-### 2.Task增量构建（UP-TO-DATE）
+### 5.3 Task增量构建（UP-TO-DATE）
 
 Gradle引入了增量式构建的概念：为每个Task定义输入（inputs）和输入（outputs），比如使用java插件编译源码时，输入为java源文件，输出为class文件，如果在执行一个Task时，如果它的输入和输出与前一次执行时没有发生变化，那么Gradle便会认为该Task是最新的（UP-TO-DATE）。
 
-## 四、自定义插件
+## 6. 自定义插件
 
-### 1.直接在build.gradle中定义
+### 6.1 直接在build.gradle中定义
 
 ```
 apply plugin: MyPlugin
@@ -289,7 +287,7 @@ dateAndTime {
 }
 ```
 
-### 2.新建单独的插件工程
+### 6.2 新建单独的插件工程
 
 * 新建工程（plugin_test）
 * 工程目录新建src/main目录和build.gradle文件
@@ -299,9 +297,9 @@ dateAndTime {
 * groovy/包名目录新建.groovy文件，如MyPlugin.groovy
 * resources/META-INF/gradle-plugins目录新建.properties文件，文件名就是最终的插件名，如：test-plugin.properties
 
-### 3.直接新建buildSrc
+### 6.3 直接新建buildSrc
 
-## 五Transform
+## 7. Transform
 
 [Gradle Transform](http://tools.android.com/tech-docs/new-build-system/transform-api)是Android官方提供给开发者在项目构建阶段即由class到dex转换期间修改class文件的一套api。目前比较经典的应用是字节码插桩、代码注入技术。
 
