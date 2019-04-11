@@ -251,11 +251,7 @@ private void considerNotify(ObserverWrapper observer) {
     // 上面的源码分析，我们知道每一次setValue或者postValue的调用都会是mVersion自增1，
     // mLastVersion的作用是为了与mVersion作比较，这个比较作用主要有两点：
     // 1.如果说mLastVersion >= mVersion，证明这个观察者已经接受过本次发布事件通知，不需要重复通知了，直接返回
-    // 2.实现粘性事件。比如有一个数据（LiveData）在A页面setValue()之后，则该数据（LiveData）中的
-    // 全局mVersion+1,也就标志着数据版本改变，然后再从A页面打开B页面，在B页面中开始订阅该LiveData，
-    // 由于刚订阅的时候内部的数据版本都是从-1开始，此时内部的数据版本就和该LiveData全局的数据
-    // 版本mVersion不一致，根据上面的原理图，B页面打开的时候生命周期方法一执行，则会进行notify，
-    // 此时又同时满足页面是从不可见变为可见、数据版本不一致等条件，所以一进B页面，B页面的订阅就会被响应一次
+    // 2.实现粘性事件。比如有一个数据（LiveData）在A页面setValue()之后，则该数据（LiveData）中的全局mVersion+1,也就标志着数据版本改变，然后再从A页面打开B页面，在B页面中开始订阅该LiveData，由于刚订阅的时候内部的数据版本都是从-1开始，此时内部的数据版本就和该LiveData全局的数据版本mVersion不一致，根据上面的原理图，B页面打开的时候生命周期方法一执行，则会进行notify，此时又同时满足页面是从不可见变为可见、数据版本不一致等条件，所以一进B页面，B页面的订阅就会被响应一次
     if (observer.mLastVersion >= mVersion) {
         return;
     }
