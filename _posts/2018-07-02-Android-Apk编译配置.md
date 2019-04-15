@@ -63,3 +63,10 @@ ABI(Application Binary Interface)：应用程序二进制接口，描述可应�
 | x86                      | 支持    | 支持        |           |      |        | 支持 |        |
 | x86_64                   | 支持    |             |           |      |        | 支持 | 支持   |
 
+4.指定Gradle使用的Jdk
+
+可以在gradle.properties添加，指定编译使用的jdk
+
+```java
+org.gradle.java.home=/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home
+```
