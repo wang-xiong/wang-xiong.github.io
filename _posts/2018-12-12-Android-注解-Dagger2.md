@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Dagger2使用"
+title: "「注解系列」三、Dagger2使用"
 subtitle: 'Using annotation in Android'
 date:       2018-12-12
 author: "Wangxiong"
