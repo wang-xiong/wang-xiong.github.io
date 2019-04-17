@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[View系列] 七、ConstraintLayout使用"
+title: "「View系列」 七、ConstraintLayout使用"
 subtitle: '学习View相关知识'
 date:       2018-08-07
 author: "Wangxiong"

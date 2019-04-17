@@ -1,3 +1,13 @@
+---
+layout: post
+title: "「Java并发编程」Volatile关键字"
+subtitle: 'Java基础回顾复习'
+date:       2018-03-27
+author: "Wangxiong"
+header-style: text
+tags:
+  - Java
+---
 ## 1. Java内存模型
 
 Java内存模型规定所以的变量都是存在主存中，每个线程都有自己的工作内存。线程对变量的所有操作都必须在工作内存中进行，而不能直接对主存进行操作。每行线程不能访问其他线程的工作内存。

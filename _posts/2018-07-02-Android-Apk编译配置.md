@@ -7,7 +7,7 @@ author: "Wangxiong"
 header-style: text
 tags:
   - Android
-  - APP
+  - APK
 ---
 
 ## 1. compileSdkVersion，miniSdkVersion，targetSdkVersion

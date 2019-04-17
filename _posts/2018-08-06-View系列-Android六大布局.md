@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "[View系列] 六、Android六大布局简介"
+title: "「View系列」 六、Android六大布局简介"
 subtitle: '学习View相关知识'
 date:       2018-08-06
 author: "Wangxiong"

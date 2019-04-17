@@ -1,3 +1,14 @@
+---
+layout: post
+title: "「App性能系列」StrictMode"
+subtitle: 'Android应用 APP性能学习'
+date:       2018-09-08
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - APP性能
+---
 ## 1. 严格模式分为两种策略
 
 - 线程监控策略（ThreadPolicy）：抓取可能造成长执行时间的存取行为。如磁盘读写，数据库存取，主要在主线程上监控

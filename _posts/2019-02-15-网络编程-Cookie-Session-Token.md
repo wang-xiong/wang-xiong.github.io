@@ -1,3 +1,14 @@
+---
+layout: post
+title: "「网络编程」 六、Cookie、Session、Token"
+subtitle: 'Android'
+date:       2019-02-15
+author: "Wangxiong"
+header-style: text
+tags:
+  - Cookie
+  - 网络编程
+---
 ## 1. Cookie
 
 Http协议是无状态的协议，意味着服务端无法从连接上跟踪回话状态。而Cookie技术是针对客户端的解决方案，Cookie是由服务端发送给客户端的特殊信息，这些信息以文件的方式存放在客户端，然后客户端每次访问服务器发送请求的时候都会带上这些特殊信息，

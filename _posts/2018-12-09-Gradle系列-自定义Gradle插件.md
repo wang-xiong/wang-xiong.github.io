@@ -1,3 +1,14 @@
+---
+layout: post
+title: "「Gradle系列」自定义Gradle插件"
+subtitle: 'Java'
+date:       2018-12-09
+author: "Wangxiong"
+header-style: text
+tags:
+  - Java
+  - Gradle
+---
 ## 1. Gradle插件简介
 
 插件的好处就是可以动态的插拔 ，来实现或卸载某些功能。自定义Gradle插件可以让我们更好的管理构建Android apk，从而在编译构建的过程中添加某些功能。应用Gradle插件需要调用Project的apply方法。Gradle插件一般分为两种，一种是脚本插件，脚本插件是额外的构建插件可以理解为普通的xxx.gradle。另一种是对象插件又叫二进制插件，是通过实现了Plugin接口的类。[学习Demo](https://github.com/wang-xiong/WxApp/tree/master/gradle_plugins)

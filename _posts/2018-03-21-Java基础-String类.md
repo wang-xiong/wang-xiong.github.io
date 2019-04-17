@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "【Java基础】String类"
+title: "「Java基础」String类"
 subtitle: 'Java基础回顾复习'
 date:       2018-03-21
 author: "Wangxiong"

@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Jetpack系列」 三、ViewModel"
+subtitle: 'Android'
+date:       2019-03-03
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - Jetpack
+---
 ## 1. ViewModel简介
 
 ViewModel主要用来存储和管理与UI相关的数据，它能够让数据在屏幕旋转等配置信息发生改变导致UI重建的情况下不被销毁。[官方文档](https://developer.android.google.cn/topic/libraries/architecture/viewmodel)

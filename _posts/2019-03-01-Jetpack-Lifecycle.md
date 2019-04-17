@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Jetpack系列」 一、Lifcycle"
+subtitle: 'Android'
+date:       2019-03-01
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - Jetpack
+---
 [Android Jetpack](https://developer.android.google.cn/jetpack)组件是Google推出的一套应用软件组件，分为四个方面基础、架构、行为、界面。
 
 ## 1. Lifecycle简介

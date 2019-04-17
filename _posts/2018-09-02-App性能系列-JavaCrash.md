@@ -1,3 +1,14 @@
+---
+layout: post
+title: "「App性能系列」Java Crash"
+subtitle: 'Android应用 APP性能学习'
+date:       2018-09-02
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - APP性能
+---
 日常开发中难免遇到Crash问题，随着APP的不断迭代，碎片化增多，开发过程的代码质量，Crash问题必然增多，常见的crash有：空指针、角标越界、类型转换异常等问题。
 
 ## 1. NullPointerException

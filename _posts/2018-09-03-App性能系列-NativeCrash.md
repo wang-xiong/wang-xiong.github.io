@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "「APP性能系列」Android Native Crash"
-subtitle: 'Android应用 APP性能'
+title: "「App性能系列」Native Crash"
+subtitle: 'Android应用 APP性能学习'
 date:       2018-09-03
 author: "Wangxiong"
 header-style: text
 tags:
   - Android
-  - APP
+  - APP性能
 ---
 
 与Java平台不同，C/C++没有一个通用的异常处理接口，在C层，CPU通过异常中断的方式，触发异常处理流程，不同的处理器有不同异常中断类型和中断处理方式，linux把这些中断处理，统一为信号量，每一种异常都有一个对应的信号，可以注册回调函数进行处理需要关注的信号量。

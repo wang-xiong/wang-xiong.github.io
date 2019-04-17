@@ -1,3 +1,15 @@
+---
+layout: post
+title: "Android消息总线之EventBus3.0"
+subtitle: 'Android消息总线学习'
+date:       2019-04-01
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - 消息总线
+  - EventBus
+---
 ## 1. EventBus简介
 
 EventBus是一个Android事件发布/订阅框架，简化了应用程序内各组件间、组件与后台线程的通信。EventBus可以替代Android传统的Intent、Handler、Broadcast或者接口回调，在Activity、Fragment、Service线程之间传递数据，执行方法。优点是开销小，代码更优雅，发送者和接受者解耦，EventBus不支持跨进程通信。[Github地址](<https://github.com/greenrobot/EventBus>b)

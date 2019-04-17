@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Dagger2使用"
+subtitle: 'Using annotation in Android'
+date:       2018-12-12
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - Annotation
+---
 ## 1. Dagger2简介
 
 ## 2. Dagger2使用

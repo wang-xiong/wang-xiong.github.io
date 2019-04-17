@@ -1,3 +1,14 @@
+---
+layout: post
+title: "自定义注解处理器"
+subtitle: 'Using annotation in Android'
+date:       2018-12-11
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - Annotation
+---
 ## 1. APT简介
 
 注解分为运行时注解和编译时注解，编译时注解的核心是APT。APT（Annotation Processing Tool）即注解处理器，是一种注解处理工具，主要功能就是在编译时期扫描和处理注解，通过注解生成java文件。常见的注解框架有：butterKnife、Dagger2、EvenBus等。

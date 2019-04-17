@@ -2,7 +2,7 @@
 layout: post
 title: "「IPC系列」二、Binder机制"
 subtitle: 'Android 系统Binder机制'
-date:       2018-06-11
+date:       2018-06-02
 author: "Wangxiong"
 header-style: text
 tags:

@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Gradle系列"
-subtitle: 'Android'
-date:       2018-12-05
+title: "「Gradle系列」Gradle简介"
+subtitle: 'Java'
+date:       2018-12-06
 author: "Wangxiong"
 header-style: text
 tags:
-  - Android
-  - Grandle
+  - Java
+  - Gradle
 ---
 ## 1. Gradle简介
 

@@ -7,7 +7,7 @@ author: "Wangxiong"
 header-style: text
 tags:
   - Android
-  - APP性能
+  - APK
 ---
 
 ## 一、APK打包流程

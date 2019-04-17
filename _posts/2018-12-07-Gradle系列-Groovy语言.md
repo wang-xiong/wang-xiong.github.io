@@ -1,3 +1,14 @@
+---
+layout: post
+title: "「Gradle系列」Groovy语言"
+subtitle: 'Java'
+date:       2018-12-07
+author: "Wangxiong"
+header-style: text
+tags:
+  - Java
+  - Gradle
+---
 ## 1. Groovy简介
 
 Groovy是Apache旗下的一种基于JVM的面向对象编程语言，即可以面向对象编程，也可以作为纯粹的脚本语言，Groovy完全支持Java语法，可以和Java互相调用，同时Groovy吸收了其他语言的优秀特性，支持动态类型转换、闭包、元编程等。

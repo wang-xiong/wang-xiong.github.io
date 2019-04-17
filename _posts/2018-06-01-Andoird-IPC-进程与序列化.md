@@ -2,7 +2,7 @@
 layout: post
 title: "「IPC系列」一、进程与序列化"
 subtitle: 'Android IPC学习'
-date:       2018-06-10
+date:       2018-06-01
 author: "Wangxiong"
 header-style: text
 tags:

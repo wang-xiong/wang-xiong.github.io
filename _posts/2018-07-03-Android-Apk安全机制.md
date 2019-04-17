@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Apk安全机制"
+subtitle: 'Android应用 App性能 Apk'
+date:       2018-07-03
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - APK
+---
 Android中的安全机制，一般有五道防线
 
 ## 1. 第一道防线

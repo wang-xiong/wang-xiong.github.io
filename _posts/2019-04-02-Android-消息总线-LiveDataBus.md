@@ -1,3 +1,15 @@
+---
+layout: post
+title: "Android消息总线之LiveDataBus"
+subtitle: 'Android消息总线学习'
+date:       2019-04-02
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - 消息总线
+  - LiveDataBus
+---
 ## 1. LiveDataBus简介
 
 LiveDataBus是基于LiveData的Android消息总线框架，LiveData是Android Architecture Compponents的框架，LiveData是一个可以被观察的数据持有类，可以感知Activity等组件的生命周期。使用LiveDataBus的原因：

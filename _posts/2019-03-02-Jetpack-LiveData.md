@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Jetpack系列」 二、LiveData"
+subtitle: 'Android'
+date:       2019-03-02
+author: "Wangxiong"
+header-style: text
+tags:
+  - Android
+  - Jetpack
+---
 ## 1. LiveData简介
 
 LiveData是Jetpack的架构(Android architecture components)中的一个组件，能够实现数据和View的绑定响应以及生命周期感知功能。[官方文档](https://developer.android.google.cn/topic/libraries/architecture/livedata)。

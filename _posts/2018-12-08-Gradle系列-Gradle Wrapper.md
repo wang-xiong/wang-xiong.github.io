@@ -1,3 +1,14 @@
+---
+layout: post
+title: "「Gradle系列」Gradle Wrapper"
+subtitle: 'Java'
+date:       2018-12-08
+author: "Wangxiong"
+header-style: text
+tags:
+  - Java
+  - Gradle
+---
 ## 1. Gradle Wrapper简介
 
 Gradle Wrapper是Gradle的包装器，Gradle有多个版本，不同版本Gradle对构建出的apk会造成不确定性，为了解决这个问题引出了Gradle Wrapper，Gradle Wrapper是一个脚本，可以让IDE在没有安装Gradle的情况下运行Gradle构建。Gradle Wrapper可以指定Gradle的版本保证了项目所构建的Gradle版本一致。当使用Gradle Wrapper启动Gradle时，如果指定的Gradle版本没有被下载关联，就会从Gradle官方仓库下载该版本Gradle到用户本地，进行解包并执行批处理文件。后续构建运行都会重用这个下载好的Gradle。

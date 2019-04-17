@@ -2,7 +2,7 @@
 layout: post
 title: "「IPC系列」三、常用的IPC"
 subtitle: 'Android IPC学习'
-date:       2018-06-12
+date:       2018-06-03
 author: "Wangxiong"
 header-style: text
 tags:
