@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "【Java虚拟机系列】五、虚拟机碎片知识"
+title: "【Java虚拟机系列】四、JVM、Dalik、ART"
 subtitle: 'Java虚拟机原理学习'
 date:       2018-04-06
 author: "Wangxiong"

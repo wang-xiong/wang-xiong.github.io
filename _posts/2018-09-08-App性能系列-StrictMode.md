@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "「App性能系列」StrictMode"
+title: "「App性能系列」八、StrictMode"
 subtitle: 'Android应用 APP性能学习'
 date:       2018-09-08
 author: "Wangxiong"

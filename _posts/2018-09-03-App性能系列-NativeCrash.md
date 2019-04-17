@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "「App性能系列」Native Crash"
+title: "「App性能系列」三、Native Crash"
 subtitle: 'Android应用 APP性能学习'
 date:       2018-09-03
 author: "Wangxiong"

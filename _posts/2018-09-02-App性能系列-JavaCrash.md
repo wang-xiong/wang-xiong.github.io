@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "「App性能系列」Java Crash"
+title: "「App性能系列」二、Java Crash"
 subtitle: 'Android应用 APP性能学习'
 date:       2018-09-02
 author: "Wangxiong"
