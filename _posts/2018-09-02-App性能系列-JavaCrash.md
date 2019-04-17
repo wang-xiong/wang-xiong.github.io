@@ -18,3 +18,7 @@ NullPointerException问题是最常见的问题之一了，一般常见的有以
 - 经常在对ListView操作，因为外部持有了Adapter里的数据引用，当外部引用对数据进行了修改，但没有及时调用notifyDataSetChanged就会造成 crash，同时也可能出现The content of the adapter has changed but ListView did not receive a notification类型的crash问题。
 - 多线程下对集合的操作也会造成这样的场景，在多线程下使用线程安全的集合代替。
 
+## 3. TransactionTooLargeException
+
+Intent传递大数据会触发TransactionTooLargeException异常，原因在于：Intent无法传递大数据是因为其内部使用了Binder通信机制，Binder事务缓冲区限制了传递数据的大小；Binder事务缓冲区的大小限定为1MB，是进程共享的。解决方法可以使用EventBus的黏性事件来解决。
+
