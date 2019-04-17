@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Android框架之Hybrid开发"
-subtitle: 'Android框架学习，Hybrid混合开发学习
+subtitle: 'Android框架学习，混合开发学习'
 date:       2019-01-02
 author: "Wangxiong"
 header-style: text
@@ -10,19 +10,15 @@ tags:
   - Hybrid
   - 应用程序框架
 ---
-Hybrid Android混合开发，java+h5
+Hybrid是Android混合开发的意思，主要是通过java+h5实现，核心在于以下三点。
 
-参考来源：https://www.cnblogs.com/dailc/p/5931324.html
+- WebView如何加载H5的页面
+- Android如何调用H5的方法
 
-issues：
+- H5如何调用Android的方法
 
-1、WebView如何加载H5的页面
 
-2、Android如何调用H5的方法
-
-3、H5如何调用Android的方法
-
-1.Webview加载H5
+## 1. Webview加载H5
 
 * 加载在线url
 
@@ -36,7 +32,7 @@ issues：
   webView.loadUrl("file:///android_asset/webview_test.html");
   ```
 
-2.Android调用js的方法
+## 2. Android调用js的方法
 
 ```java
 //1、调用无参数无返回值的方法
@@ -76,8 +72,6 @@ private void invokeJsMethod3() {
 }
 ```
 
-总结：
-
 - **4.4之前Native通过loadUrl来调用JS方法,只能让某个JS方法执行,但是无法获取该方法的返回值，方便简洁 效率低、返回值麻烦 使用场景：不需要返回值对性能要求低时**
 - **4.4之后,通过evaluateJavascript异步调用JS方法,并且能在onReceiveValue中拿到返回值**
 - **不适合传输大量数据(大量数据建议用接口方式获取)**
@@ -99,7 +93,8 @@ private void invokeJsMethod() {
 }
 ```
 
-3.JS调用Native
+## 3. JS调用Native
+
 对于JS调用Android代码的方法有3种：
 
 1.通过WebView的addJavascriptInterface（）进行对象映射
@@ -137,21 +132,18 @@ public class AndroidToJs {
 }
 ```
 
-原生和H5的另一种通信方式：JSBridge
+## 4. JSBridge
 
-什么是JSBridge
-
-JSBridge是广为流行的Hybrid开发中JS和Native一种通信方式,各大公司的应用中都有用到这种方法
-
-简单的说,JSBridge就是定义Native和JS的通信,Native只通过一个固定的桥对象调用JS,JS也只通过固定的桥对象调用Native,基本原理是:
-
-H5->通过某种方式触发一个url->Native捕获到url,进行分析->原生做处理->Native调用H5的JSBridge对象传递回调。如下图
+原生和H5的另一种通信方式是JSBridge，JSBridge是广为流行的Hybrid开发中JS和Native一种通信方式,各大公司的应用中都有用到这种方法。简单的说,JSBridge就是定义Native和JS的通信,Native只通过一个固定的桥对象调用JS,JS也只通过固定的桥对象调用Native,基本原理是：H5->通过某种方式触发一个url->Native捕获到url，进行分析->原生做处理->Native调用H5的JSBridge对象传递回调。如下图
 
 ![image-20190115144051749](/Users/wangxiong/Library/Application Support/typora-user-images/image-20190115144051749.png)
 
-使用JSBridge的原因
+使用JSBridge的原因：
 
 - **Android4.2以下,addJavascriptInterface方式有安全漏掉**
 - **iOS7以下,JS无法调用Native**
 - **url scheme交互方式是一套现有的成熟方案,可以完美兼容各种版本,不存在上述问题**
 
+**[学习参考]**
+
+https://www.cnblogs.com/dailc/p/5931324.html
