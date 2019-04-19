@@ -1,7 +1,7 @@
 # Site settings
 title: WangXiong
 SEOTitle: 王雄的博客 | WangXiong Blog
-header-img: img/home_banner.jpg
+header-img: img/home/home_banner.jpg
 email: 1072140482@qq.com
 description: "A android developer, a writer, a thinker | Hi 这里是 @王雄 的个人博客，与你一起发现更大的世界。"
 keyword: "WX, WangXiong Blog, 王雄的博客, wangxiong, Android, Java @WangXiong, 博客, 个人网站, 互联网"
@@ -26,7 +26,7 @@ jianshu_username:   4088b29806be
 # from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
 highlighter: rouge
 permalink: pretty
-paginate: 10
+paginate: 15
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 # If you have timezone issue (e.g. #68) in China, uncomment to use this:
@@ -78,7 +78,7 @@ ga_domain: wangxiong.top
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "For the next quantum leap<br>时间就是故事，用键盘留下痕迹"
+sidebar-about-description: "我用时间干了什么<br>时间就是故事，用键盘留下痕迹"
 sidebar-avatar: /img/home/me_wx.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
