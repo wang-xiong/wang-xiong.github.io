@@ -67,5 +67,7 @@ Socket也称套接字，是应用层和传输层的一个抽象层，它把TCP/I
 
 ![IPC-Socket1.jpg](https://upload-images.jianshu.io/upload_images/10547376-b28e1b98d07a91a7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+## 6. ContentProvider
+
 [学习参考](http://liuwangshu.cn/application/ipc/5-socket.html)
 

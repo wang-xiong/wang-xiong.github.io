@@ -47,7 +47,7 @@ parent：父加载器。
 
 ### 2.3 PathClassLoader
 
-Android系统使用PathClassLoader来加载系统和应用程序的类，PathClassLoader继承自BaseDexClassLoader，构造参数中没有optimizedDirectory，因为默认了参数optimizedDirectory值为：/data/dalivk-cahe，通常用来鸡杂已经安装的apk的dex文件（安装的apk的dex文件会存储在/data/dalivk-cahe中）。
+Android系统使用PathClassLoader来加载系统和应用程序的类，PathClassLoader继承自BaseDexClassLoader，构造参数中没有optimizedDirectory，因为默认了参数optimizedDirectory值为：/data/dalivk-cahe，通常用来加载已经安装的apk的dex文件（安装的apk的dex文件会存储在/data/dalivk-cahe中）。
 
 ## 3. ClassLoader的继承关系
 
